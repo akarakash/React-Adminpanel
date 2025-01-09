@@ -30,22 +30,28 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    console.log('Attempting to log in with email:', email);
+    
     if (email) {
       let filterdata = value.filter((item) => item?.email == email);
-      console.log(filterdata);
+      console.log('Filtered data:', filterdata);
       if (filterdata.length == 0) {
-        alert("please enter a email....");
+        alert("please enter a valid email....");
       } else {
         if (password == filterdata[0].password) {
-          localStorage.setItem('email',email)
-          localStorage.setItem('password',password)
+          localStorage.setItem('email', email);
+          localStorage.setItem('password', password);
+          console.log('Navigating to home page...');
+          alert('login successfully navigate to the home page ')
           nav("/");
+        } else {
+          alert('Incorrect password');
         }
       }
     } else {  
-    
+      alert("Please enter an email.");
     }
-  };
+};
 
   return (
     <Container component="main" maxWidth="xs">
